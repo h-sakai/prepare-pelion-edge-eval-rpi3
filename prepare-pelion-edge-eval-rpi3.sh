@@ -321,8 +321,8 @@ if [ -z "${GIT_USERNAME}" ]; then
         info "git config -- global user.name is empty. Please input name."
         read GIT_USERNAME
     done
-    info " \$ git config --global user.name ${GIT_USERNAME}"
-    git config --global user.name ${GIT_USERNAME}
+    info " \$ git config --global user.name \"${GIT_USERNAME}\""
+    git config --global user.name "${GIT_USERNAME}"
     stop_if_error $?
 fi
 info "OK. User name is ${GIT_USERNAME}."
@@ -333,8 +333,8 @@ if [ -z "${GIT_EMAIL}" ]; then
         info "git config -- global user.email is empty. Please input name."
         read GIT_EMAIL
     done
-    info " \$ git config --global user.email ${GIT_EMAIL}"
-    git config --global user.email ${GIT_EMAIL}
+    info " \$ git config --global user.email \"${GIT_EMAIL}\""
+    git config --global user.email "${GIT_EMAIL}"
     stop_if_error $?
 fi
 info "OK. User name is ${GIT_EMAIL}."
@@ -362,8 +362,8 @@ fi
 info "OK. Repo is available."
 
 info "Intializing Repo."
-if [ ${USE_HTTPS} = 0 ]; then
-    info "Note \"repo init"\" will be failed if your SSH public key is not registered into your GitHub account yet."
+if [ ! ${USE_HTTPS} ]; then
+    info "Note \"repo init\" will be failed if your SSH public key is not registered into your GitHub account yet."
 fi
 info " \$ python3 repo init -u ${REPO_MANIFEST_PELION_EDGE_URL} -b ${REPO_MANIFEST_PELION_EDGE_BRANCH}"
 python3 repo init -u ${REPO_MANIFEST_PELION_EDGE_URL} -b ${REPO_MANIFEST_PELION_EDGE_BRANCH}
