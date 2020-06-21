@@ -37,10 +37,14 @@ https://gist.github.com/ryuatarm/b537e12facc80014df126e972cce0810
 ## 制限事項
 
 - git/sshプロトコルを使用する場合には、あらかじめGitHubアカウントへのSSH Public Keyの登録が必要です。
+- 完全自動ではなくて、あくまでも半自動です。場合によっていろいろ入力を求められます。
 - 場合によってリブートが必要な場合があります。
   - リブート後に同じ条件で再度実行してください。
 - 場合によって一度もしくは複数回sudoのパスワード入力を要求されます。
   - 面倒な人はパスワード入力を回避するようにsudoersを適切に設定してください。
+- -pオプションを使用した場合、git config --globalに以下を追加します。問題があればmake後に削除するなど、何らかの対処をしてください。
+  - url.https://github.com.insteadof=ssh://git@github.com
+  - url.https://github.com/.insteadof=git@github.com:
 - たぶんProxyの後ろにいると使えません。
 - manifest-toolで作成される証明書の有効期限は90日になります。
   - 期限を延ばしたい場合は手動でmanifest-toolを実行し、上書きしてください。
